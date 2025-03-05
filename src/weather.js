@@ -9,16 +9,11 @@ export default async function getWeatherData(location, tempFormat) {
 
   const data = await response.json();
 
-  console.log(data);
-
   const weatherData = {
     address: data.resolvedAddress,
     alerts: data.alerts,
-    description: data.description,
     days: new Week(data).weekArray(),
   };
-
-  console.log(weatherData);
 
   return weatherData;
 }
@@ -26,14 +21,20 @@ export default async function getWeatherData(location, tempFormat) {
 class Day {
   constructor(date, weatherData) {
     this.date = date;
-    this.weatherData = weatherData.days.find((day) => day.datetime === date);
-    // this.cloudCover = this.weatherData.cloudcover,
-    // this.conditions = this.weatherData.conditions,
-    // this.precip = this.weatherData.precip,
-    // this.precipProb = this.precipprob,
-    // this.sunrise = this.weatherData.sunrise,
-    // this.sunset = this.weatherData.sunset,
-    // this.hours =
+    this.temp = weatherData.temp;
+    this.conditions = weatherData.conditions;
+    this.feelslike = weatherData.feelslike;
+    this.icon = weatherData.icon;
+    this.description = weatherData.description;
+    this.tempmax = weatherData.tempmax;
+    this.tempmin = weatherData.tempmin;
+    this.precip = weatherData.precip;
+    this.pressure = weatherData.pressure;
+    this.winddir = weatherData.winddir;
+    this.windspeed = weatherData.windspeed;
+    this.uvindex = weatherData.uvindex;
+    this.sunrise = weatherData.sunrise;
+    this.sunset = weatherData.sunset;
   }
 }
 
@@ -43,11 +44,12 @@ class Week {
     this.weekArray = function () {
       const weekArray = [];
 
-      for (let index = 0; index < 7; index++) {
+      for (let index = 0; index < 8; index++) {
+        const dayDate = format(addDays(this.date, index), "yyyy-MM-dd");
         weekArray.push(
           new Day(
-            format(addDays(this.date, index), "yyyy-MM-dd"),
-            this.weatherData,
+            dayDate,
+            weatherData.days.find((day) => day.datetime === dayDate),
           ),
         );
       }
