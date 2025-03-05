@@ -39,7 +39,7 @@ export default function populateContent(weatherData) {
     );
     maxTemp.textContent = Math.round(weatherData.days[dayIndex].tempmax) + "℃";
     minTemp.textContent = Math.round(weatherData.days[dayIndex].tempmin) + "℃";
-    precip.textContent = weatherData.days[dayIndex].precip + "%";
+    precip.textContent = Math.round(weatherData.days[dayIndex].precip) + "%";
     windDir.textContent = d2d(weatherData.days[dayIndex].winddir);
     windSpeed.textContent =
       Math.round(weatherData.days[dayIndex].windspeed) + " km/h";
@@ -54,6 +54,11 @@ export default function populateContent(weatherData) {
   function upcomingDays() {
     const daysDisplay = document.querySelector(".days");
 
+    //removes the days when changing locations
+    while (daysDisplay.firstChild) {
+      daysDisplay.removeChild(daysDisplay.firstChild);
+    }
+
     for (let i = 0; i < weatherData.days.length; i++) {
       const day = weatherData.days[i];
 
@@ -65,7 +70,7 @@ export default function populateContent(weatherData) {
 
       const dateDisplay = document.createElement("div");
       dateDisplay.classList.add("date");
-      dateDisplay.textContent = format(new Date(day.date), "iii, dd-MM-yyy");
+      dateDisplay.textContent = format(new Date(day.date), "iii, dd-MM-yyyy");
       dayDisplay.appendChild(dateDisplay);
 
       const tempDisplay = document.createElement("div");

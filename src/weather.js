@@ -1,17 +1,20 @@
 import { addDays, format } from "date-fns";
 
 export default async function getWeatherData(location, tempFormat) {
-  const format = tempFormat ? tempFormat : "metric";
+  const tempUnit = tempFormat ? tempFormat : "metric";
 
   const response = await fetch(
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/next7days?key=QH5MDZP895AXPWKBG37GVJ9C6&unitGroup=${format}`,
+    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/next7days?key=QH5MDZP895AXPWKBG37GVJ9C6&unitGroup=${tempUnit}`,
   );
 
   const data = await response.json();
 
+  console.log(data);
+
   const weatherData = {
     address: data.resolvedAddress,
     alerts: data.alerts,
+
     days: new Week(data).weekArray(),
   };
 

@@ -9,3 +9,17 @@ async function runScript() {
   console.log(weatherData);
   populateContent(weatherData);
 }
+
+function search() {
+  const searchbox = document.querySelector("#location");
+
+  searchbox.addEventListener("keydown", async (e) => {
+    if (e.code === "Enter") {
+      const weatherData = await getWeatherData(searchbox.value);
+
+      populateContent(weatherData);
+    }
+  });
+}
+
+search();
