@@ -9,4 +9,4 @@ A weather app displaying the weather for the day and the following week. Using V
 
 ## Demo
 
-Insert gif or link to demo
+Checkout the demo [here](https://ktotopawel.github.io/weather-app/).
