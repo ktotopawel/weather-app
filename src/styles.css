@@ -291,7 +291,7 @@ body {
 
 .celsius::after {
   position: absolute;
-  content: "℃";
+  content: "°C";
   font-size: calc(0.3 * 1em);
 }
 
