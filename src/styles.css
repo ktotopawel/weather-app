@@ -334,3 +334,85 @@ body {
 .icon {
   filter: invert(1);
 }
+
+@media (max-width: 1024px) {
+  .current-weather {
+    grid-template-columns: 1fr; /* Stack vertically */
+  }
+
+  .day-temp {
+    font-size: 2rem;
+  }
+
+  .bottom-temp span {
+    font-size: 2rem;
+  }
+
+  .desc-sect {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .searchbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .main {
+    padding: 1rem;
+    justify-content: start;
+  }
+
+  .weather-display {
+    width: 100%;
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  #current-temp {
+    font-size: clamp(4rem, 20vw, 10rem); /* Responsive font size */
+  }
+
+  .bottom-temp {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .days {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+
+  .day {
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchbar input {
+    width: 100%;
+  }
+
+  .day-temp {
+    font-size: 1.75rem;
+  }
+
+  .day-maxmin span {
+    font-size: 1rem;
+  }
+
+  .desc-sect span {
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+  }
+}
